@@ -1,33 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Invie - tus mejores guitarras!!</title>
-    <meta charset="utf-8"/>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Allerta' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/invie.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  </head>
-  <body>
-    <section id="portada" class="portada background"> <!-- portada -->
-      <header id="header" class="header contenedor"> <!-- header -->
-        <figure class="logotipo"> <!-- logotipo -->
-          <img src="images/invie.png" width="186" height="60" alt="Invie logotipo"/>
-        </figure>
-        <span class="burguer-button icon-menu" id= "burguer-button-id"></span>
-        <nav class="menu" id="menu-id"> <!-- menu -->
-          <ul>
-            <li>
-              <a href="index.html">Home</a>
-            </li>
-            <li>
-              <a href="#guitarras">Guitarras</a>
-            </li>
-            <li>
-              <a href="precios.html">Precios</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+<?php include 'header.html'; ?>
+
       <div class="contenedor">
         <h1 class="titulo">Guitarras <span>invie</span>sibles</h1><!-- titulo -->
         <h3 class="title-a">Sé la estrella de rock que siempre quisiste ser</h3><!-- resumen -->
@@ -64,50 +36,9 @@
         </div>
       </article>
     </section>
-    <footer class="footer">
-      <div class="contenedor">
-        <div class="contacto">
-          <img data-src="images/invie-white.png" alt="logotipo blanco"/>
-          <a href="tel:+573024456678"><strong>Telefono</strong> <span>3024456678</span></a>
-          <a href="mailto:contacto@invie.com"><strong>E-mail</strong> <span>contacto@invie.com</span></a>
-        </div>
-        <form class="formulario">
-          <div class="col1">
-            <label for="nombre">Nombre</label>
-            <input type="text" required id="nombre" name="nombre"/>
-            <label for="email">E-mail</label>
-            <input type="email" required id="email" name="email"/>
-            <div class="sexo">
-              <label for="mujer">
-                <input type="radio" id="mujer" checked name="sexo" value="mujer"> mujer
-              </label>
-              <label for="hombre">
-                <input type="radio" id="hombre" name="sexo" value="hombre"> hombre
-              </label>
-            </div>
-            <div class="intereses">
-              <label for="cotizacion">
-                <input type="checkbox" checked id="cotizacion" name="intereses" value="cotizacion"> Cotización
-              </label>
-              <label for="reclamos">
-                <input type="checkbox" id="reclamos" name="intereses" value="reclamos"> Reclamos
-              </label>
-              <label for="comentarios">
-                <input type="checkbox" id="comentarios" name="intereses" value="comantarios"> Comentarios
-              </label>
-              <label for="otros">
-                <input type="checkbox" id="otros" name="intereses" value="otros"> Otros
-              </label>
-            </div>
-          </div>
-          <div class="col2">
-            <label for="comentarios">Comentarios</label>
-            <textarea name="comantarios" id="comentarios" cols="30" rows="7"></textarea>
-            <input type="submit" value="Enviar" class="button"/>
-          </div>
-        </form>
-      </div>
-    </footer>
+
+<?php include 'footer.html'; ?>
+    
     <script src= "https://cdnjs.cloudflare.com/ajax/libs/blazy/1.6.2/blazy.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
      <script type="text/javascript">
@@ -156,8 +87,20 @@
         var blazy = new Blazy({
           //options
           selector:'img'
-        });
-        //lazy loading
+          breakpoints: [{
+              , src: 'data-src'
+          }]
+          , success: function(element){
+                    setTimeout(function(){
+                    // We want to remove the loader gif now.
+                    // First we find the parent container
+                    // then we remove the "loading" class which holds the loader image
+                    var parent = element.parentNode;
+                    parent.className = parent.className.replace(/\bloading\b/,'');
+                      }, 200);
+                    }
+      });
+      //lazy loading
 
     </script>
   </body>
