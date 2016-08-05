@@ -37,7 +37,7 @@
     <section id="guitarras" class="guitarras contenedor"> <!-- guitarras -->
       <h2>Nuestra guitarras</h2><!-- titulo -->
       <article class="guitarra"> <!-- guitarra 1 -->
-        <img class="derecha " data-src="images/invie-acustica.png" alt="Guitarra Invie Acustica" width="350"/>
+        <img class="derecha b-lazy" data-src="images/invie-acustica.png" alt="Guitarra Invie Acustica" width="350"/>
         <div class="contenedor-guitarra-a">
           <h3 class="title-b">Invie Acustica</h3>
           <ol>
@@ -48,7 +48,7 @@
         </div>
       </article>
       <article class="guitarra b"> <!-- guitarra 2 -->
-        <img class="izquierda" data-src="images/invie-classic.png" alt="Guitarra Invie Classic" width="350"/>
+        <img class="izquierda b-lazy" data-src="images/invie-classic.png" alt="Guitarra Invie Classic" width="350"/>
         <div class="contenedor-guitarra-b">
           <h3 class="title-b">Invie Classic</h3>
           <ol>
@@ -156,6 +156,15 @@
         var blazy = new Blazy({
           //options
           selector:'img'
+          , success: function(element){
+                    setTimeout(function(){
+                      // We want to remove the loader gif now.
+                      // First we find the parent container
+                      // then we remove the "loading" class which holds the loader image
+                      var parent = element.parentNode;
+                      parent.className = parent.className.replace(/\bloading\b/,'');
+                        }, 200);
+                    }
         });
         //lazy loading
 
